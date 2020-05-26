@@ -1,0 +1,124 @@
+{% extends 'accounts/main.html' %} 
+
+{% block content %} 
+<div class="row">
+  <div class="col-md-12">
+
+    <div id="mdb-lightbox-ui"></div>
+
+    <div class="mdb-lightbox">
+
+      <figure class="col-md-4">
+        <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(145).jpg" data-size="1600x1067">
+          <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(145).jpg" class="img-fluid">
+        </a>
+      </figure>
+
+      <figure class="col-md-4">
+        <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(150).jpg" data-size="1600x1067">
+          <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(150).jpg" class="img-fluid" />
+        </a>
+      </figure>
+
+      <figure class="col-md-4">
+        <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(150).jpg" data-size="1600x1067">
+          <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(150).jpg" class="img-fluid" />
+        </a>
+      </figure>
+
+
+
+    </div>
+
+  </div>
+</div>
+
+
+<br />
+
+<img src="https://images.unsplash.com/photo-1588161543631-89e74f5b2c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Girl in a jacket" >
+<br />
+{% include 'accounts/status.html' %}
+
+<div class="row">
+  <div class="col-md-5">
+    <h5>CUSTOMERS:</h5>
+    <hr />
+    <div class="card card-body">
+      <a
+        class="btn btn-primary btn-sm btn-block"
+        style="background-color: #9e9d24;"
+        href=""
+        >Create Customer</a
+      >
+      <table class="table table-sm">
+        <tr>
+          <th></th>
+          <th>Customer</th>
+          <th>Phone</th>
+        </tr>
+
+        {% for customer in customers %}
+        <tr>
+          <td>
+            <a
+              class="btn btn-sm btn-info"
+              href="{% url 'customer' customer.id %}"
+              >View</a
+            >
+          </td>
+          <td>{{customer.name}}</td>
+          <td>{{customer.phone}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+
+  <div class="col-md-7">
+    <h5>LAST 5 ORDERS</h5>
+    <hr />
+    <div class="card card-body">
+      <a
+        class="btn btn-primary btn-sm btn-block"
+        style="background-color: #9e9d24;"
+        href="{% url 'create_order' %}"
+        >Create Order</a
+      >
+      <table class="table table-sm">
+        <tr>
+          <th>Product</th>
+          <th>Date Orderd</th>
+          <th>Status</th>
+          <th>Update</th>
+          <th>Remove</th>
+        </tr>
+
+        {% for order in orders %}
+        <tr>
+          <td>{{order.product}}</td>
+          <td>{{order.date_created}}</td>
+          <td>{{order.status}}</td>
+          <td>
+            <a
+              class="btn btn-sm btn-info"
+              href="{% url 'update_order' order.id %}"
+              >Update</a
+            >
+          </td>
+
+          <td>
+            <a
+              class="btn btn-sm btn-danger"
+              href="{% url 'delete_order' order.id %}"
+              >Delete</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
